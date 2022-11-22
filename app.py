@@ -196,11 +196,17 @@ def main():
         unsafe_allow_html=True,
     )
 
-    bar_plot = px.bar(matches, x="selected_team", y=["wins", "defeats", "draws"])
+    bar_plot = px.bar(
+        matches, x="results", color="results", title="Distribution of match results"
+    )
+    line_plot = px.line(
+        matches, x="date", y="goals_scored", title="Goals scored distribution over time"
+    )
     bar_plot.update_xaxes(showgrid=False)
     bar_plot.update_yaxes(showgrid=False)
 
     st.plotly_chart(bar_plot)
+    st.plotly_chart(line_plot)
 
     print(matches)
 
